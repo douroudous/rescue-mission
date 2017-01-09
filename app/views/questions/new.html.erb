@@ -1,0 +1,7 @@
+<h1>New Question</h1>
+
+<%= form_for @question, url: {action: "create"} do |question_form| %>
+  <p>Title <%= question_form.text_field :title %></p>
+  <p>Description <%= question_form.text_field :description %></p>
+  <%= question_form.submit "Create" %>
+<% end %>
