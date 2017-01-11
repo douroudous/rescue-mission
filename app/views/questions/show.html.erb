@@ -1,3 +1,20 @@
 <h1> <%= @question.title %> </h1>
 
 <p> <%= @question.description %> </p>
+
+<%=link_to "<button>Edit Question?</button>".html_safe, edit_question_path, class:"btn btn-secondary"%>
+
+<%= link_to "Delete Question", @question, method: :delete%>
+
+<h1>New Answer</h1>
+
+<%= form_for [@question, @answer] do |f| %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= f.submit %>
+<% end %>
+
+<br/>
+
+<%= collection_radio_buttons(:answer, :question_id, @answers, :id, :description)  %>
