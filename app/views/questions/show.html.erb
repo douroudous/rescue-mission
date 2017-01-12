@@ -16,5 +16,14 @@
 <% end %>
 
 <br/>
+<ul>
 
-<%= collection_radio_buttons(:answer, :question_id, @answers, :id, :description)  %>
+ <%@answers.each do |answer| %>
+<li>
+  <%=answer.description%>
+  <%= button_to "Favorite?", @question, method: :patch, params: { question: {
+    favorite: answer
+    }} %>
+</li>
+<%end%>
+</ul>

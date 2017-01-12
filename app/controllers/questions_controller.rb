@@ -36,7 +36,10 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
-
+    @answer = Answer.find(params[:question][:favorite])
+    @answers = @question.answers
+    @question.favorite_id = @answer.id
+    binding.pry
     if @question.update(question_params)
       redirect_to questions_path
     else
@@ -56,7 +59,7 @@ class QuestionsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def question_params
-    params.require(:question).permit(:title, :description)
+    params.require(:question).permit(:title, :description, :favorite_id)
   end
 
 end
